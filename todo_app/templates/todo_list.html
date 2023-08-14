@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Hello {{ user.username }}, Welcome to your Daily Tasks</h1>
+            {% for list in tasks %}
+            {% if date %}
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">Task Date</th>
+                    <th scope="col">All Tasks</th>
+                    <th scope="col">Done/Not Done</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+
+                <tr>
+                    <th scope="row">{{ list.task_date }}</th>
+                    <td>{{ list.task }}</td>
+                    <td>{{ list.task_is_done }}</td>
+                    <td><a href="{% url 'update_task' pk=list.pk %}" class="btn btn-warning">Update</a></td>
+                    <td><a href="{% url 'delete_task' pk=list.pk %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </table>
+            {% endif %}
+    {% endfor %}
+
+<br>
+        <h4>Create New Task</h4>
+        <a href="{% url 'create_task' %}" class="btn btn-primary">New Task</a>
+
+{% endblock %}
