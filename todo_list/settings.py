@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +26,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'todo_app/static/css')
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y4i%lt9e=c5w4%snewlmqt9r0)778la5(_r2us^n4#y&uq(pkp'
+SECRET_KEY = env('SECRET_KET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,9 +83,9 @@ WSGI_APPLICATION = 'todo_list.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tododb',
+        'NAME': env('DATABASE_NAME'),
         'USER': 'postgres',
-        'PASSWORD': 'Fishes80#',
+        'PASSWORD': env('DATABASE_PASSWORD'),
         'HOST': 'localhost',
     }
 }
