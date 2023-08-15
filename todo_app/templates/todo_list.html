@@ -2,8 +2,7 @@
 
 {% block content %}
     <h1>Hello {{ user.username }}, Welcome to your Daily Tasks</h1>
-            {% for list in tasks %}
-            {% if date %}
+
             <table class="table table-striped">
                 <tr>
                     <th scope="col">Task Date</th>
@@ -12,7 +11,7 @@
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
-
+                    {% for list in tasks %}
                 <tr>
                     <th scope="row">{{ list.task_date }}</th>
                     <td>{{ list.task }}</td>
@@ -20,9 +19,8 @@
                     <td><a href="{% url 'update_task' pk=list.pk %}" class="btn btn-warning">Update</a></td>
                     <td><a href="{% url 'delete_task' pk=list.pk %}" class="btn btn-danger">Delete</a></td>
                 </tr>
+                {% endfor %}
             </table>
-            {% endif %}
-    {% endfor %}
 
 <br>
         <h4>Create New Task</h4>

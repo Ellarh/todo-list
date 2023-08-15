@@ -3,8 +3,17 @@
 {% block content %}
 
     <h1>Here is a List of all your completed Tasks</h1>
-    {% for list in completed_tasks %}
-                <p>Task: {{ list.task }} done on {{ list.task_date }}</p>
-    {% endfor %}
+        <table class="table table-striped">
+            <tr>
+                <th>Task</th>
+                <th>Done On</th>
+            </tr>
+            {% for list in completed_tasks %}
+            <tr>
+                <td>{{ list.task }}</td>
+                <td>{{ list.task_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
 {% endblock %}
