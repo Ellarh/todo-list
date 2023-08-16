@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Full Task Details</h1>
+    <div>
+        <table class="table table-striped">
+                <tr>
+                    <th scope="col">Task</th>
+                    <th scope="col">Task Description</th>
+                </tr>
+                <tr>
+                    <td>{{ task_detail.task }}</td>
+                    <td>{{ task_detail.task_description }}</td>
+                </tr>
+            </table>
+    </div>
+
+{% endblock %}

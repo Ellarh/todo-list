@@ -1,5 +1,6 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, HttpResponse
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import TodoList
 from .forms import TodoListForm
 from django.utils import timezone
@@ -18,6 +19,7 @@ class CompletedTaskView(ListView):
     model = TodoList
     context_object_name = 'completed_tasks'
     template_name = 'completed_tasks.html'
+    paginate_by = 5
 
     def get_queryset(self):
         user = self.request.user
@@ -36,11 +38,17 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
 
 class UpdateTaskView(LoginRequiredMixin, UpdateView):
     model = TodoList
-    fields = ('task', 'task_is_done')
+    fields = ('task', 'task_description', 'task_is_done')
     template_name = 'update_task.html'
 
 
-class DeleteTaskView(LoginRequiredMixin,DeleteView):
+class DetailTaskView(DetailView):
+    model = TodoList
+    template_name = 'todo_list_detail.html'
+    context_object_name = 'task_detail'
+
+
+class DeleteTaskView(LoginRequiredMixin, DeleteView):
     model = TodoList
     success_url = reverse_lazy('tasks')
     template_name = 'confirm_delete.html'

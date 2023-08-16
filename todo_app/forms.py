@@ -15,5 +15,5 @@ class RegisterForm(forms.ModelForm):
 class TodoListForm(forms.ModelForm):
     class Meta:
         model = TodoList
-        fields = ['task_date', 'task', 'task_is_done']
+        fields = ['task_date', 'task', 'task_description', 'task_is_done']
 
