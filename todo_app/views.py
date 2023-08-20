@@ -61,6 +61,25 @@ def user_tasks(request):
     return render(request, 'todo_list.html', context={'tasks': tasks})
 
 
+@login_required
+def search(request):
+    user = request.user
+    search_query = TodoList.objects.filter(user=user).order_by('-task_date')
+    keywords = ''
+
+    # Check if the search form has been submitted
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            search_query = search_query.filter(task__icontains=keywords)
+
+    # Render the page with or without tasks based on whether a search has been performed
+    if 'keywords' in request.GET and keywords:
+        return render(request, 'search.html', context={'search_result': search_query})
+    else:
+        return render(request, 'search.html')
+
+
 def register(request):
     registered = False
 

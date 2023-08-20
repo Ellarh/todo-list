@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Search</h1>
+    <form action="{% url 'search' %}">
+        <div class="container-fluid">
+            <label class="form-label">Search by Keywords</label>
+            <input type="text" name="keywords">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+    {% if search_result %}
+       <div class="search-column">
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            {% for task in search_result %}
+                <tbody>
+                    <tr>
+                        <td>{{ task.task_date }}</td>
+                        <td>{{ task.task }}</td>
+                        <td>{{ task.task_description }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+       </div>
+
+    {% else %}
+        <h5>No Tasks Found</h5>
+    {% endif %}
+
+
+{% endblock %}

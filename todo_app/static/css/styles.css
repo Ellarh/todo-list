@@ -1,8 +1,13 @@
 h1{
     padding-top: 20px;
+    margin: 10px;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
 
+}
+
+h5{
+    text-align: center;
 }
 
 nav{

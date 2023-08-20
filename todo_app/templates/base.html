@@ -28,16 +28,19 @@
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'tasks' %}">View all Tasks</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'tasks' %}">Dashboard</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'create_task' %}">Create Todo</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'create_task' %}">Create Task</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'completed_tasks' %}" aria-disabled="true">Completed Tasks</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'user_logout' %}" aria-disabled="true">Logout</a>
+                </li>
+                <li class="nav-item justify-content-end">
+                    <a href="{% url 'search' %}"><button class="btn btn-outline-success" type="submit">Search</button></a>
                 </li>
                 {% else %}
                 <li class="nav-item">
